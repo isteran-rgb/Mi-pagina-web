@@ -382,7 +382,7 @@
             line-height: 1.7;
         }
 
-        /* VIDEO EN HUMANIDADES */
+        /* TRABAJOS DE HUMANIDADES */
         .trabajo-video {
             margin-top: 28px;
             padding-top: 24px;
@@ -737,7 +737,23 @@
             <h2 id="modalTitulo"></h2>
             <p id="modalTexto"></p>
 
-            <!-- VIDEO: aparece únicamente en Humanidades -->
+            <!-- CANVA EN HUMANIDADES -->
+            <article class="trabajo-video" id="trabajoCanva" hidden>
+                <h3>Presentación de Humanidades</h3>
+
+                <p>Consulta mi presentación en Canva.</p>
+
+                <a
+                    class="boton"
+                    href="https://canva.link/x9br5x30pad18ww"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Ver presentación en Canva ↗
+                </a>
+            </article>
+
+            <!-- VIDEO EN HUMANIDADES -->
             <article class="trabajo-video" id="trabajoDebate" hidden>
                 <h3>Resumen del debate: pena de muerte</h3>
 
@@ -746,7 +762,6 @@
                     del debate realizado en clase.
                 </p>
 
-                <!-- Sube debate.mp4 junto a index.html -->
                 <video
                     id="videoDebate"
                     controls
@@ -857,8 +872,11 @@
             document.getElementById("modalTexto").textContent =
                 datos.texto;
 
-            // El video solo se muestra en Humanidades.
+            // Canva y el video aparecen solo en Humanidades.
             document.getElementById("trabajoDebate").hidden =
+                materia !== "humanidades";
+
+            document.getElementById("trabajoCanva").hidden =
                 materia !== "humanidades";
 
             modal.showModal();
@@ -870,7 +888,6 @@
         }
 
         modal.addEventListener("close", function () {
-            // Detiene el audio al cerrar la ventana.
             document.getElementById("videoDebate").pause();
             document.body.style.overflow = "";
         });
