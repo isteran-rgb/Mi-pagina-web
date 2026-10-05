@@ -382,6 +382,37 @@
             line-height: 1.7;
         }
 
+        /* VIDEO EN HUMANIDADES */
+        .trabajo-video {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #333;
+        }
+
+        .trabajo-video h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .trabajo-video video {
+            display: block;
+            width: 100%;
+            margin-top: 18px;
+            border: 1px solid #333;
+            border-radius: 12px;
+            background: #000;
+        }
+
+        .trabajo-video a {
+            display: inline-block;
+            margin-top: 12px;
+            color: #ddd;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
         /* FOOTER */
         footer {
             padding: 50px 10%;
@@ -705,6 +736,36 @@
 
             <h2 id="modalTitulo"></h2>
             <p id="modalTexto"></p>
+
+            <!-- VIDEO: aparece únicamente en Humanidades -->
+            <article class="trabajo-video" id="trabajoDebate" hidden>
+                <h3>Resumen del debate: pena de muerte</h3>
+
+                <p>
+                    Presentación de los argumentos y las reflexiones
+                    del debate realizado en clase.
+                </p>
+
+                <!-- Sube debate.mp4 junto a index.html -->
+                <video
+                    id="videoDebate"
+                    controls
+                    preload="metadata"
+                    playsinline
+                    aria-label="Resumen del debate sobre la pena de muerte"
+                >
+                    <source src="./debate.mp4" type="video/mp4">
+                    Tu navegador no permite reproducir este video.
+                </video>
+
+                <a
+                    href="./debate.mp4"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Abrir video en otra pestaña ↗
+                </a>
+            </article>
         </div>
     </dialog>
 
@@ -796,6 +857,10 @@
             document.getElementById("modalTexto").textContent =
                 datos.texto;
 
+            // El video solo se muestra en Humanidades.
+            document.getElementById("trabajoDebate").hidden =
+                materia !== "humanidades";
+
             modal.showModal();
             document.body.style.overflow = "hidden";
         }
@@ -805,6 +870,8 @@
         }
 
         modal.addEventListener("close", function () {
+            // Detiene el audio al cerrar la ventana.
+            document.getElementById("videoDebate").pause();
             document.body.style.overflow = "";
         });
 
