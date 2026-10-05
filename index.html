@@ -2,605 +2,1342 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio | Mateo Terán</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Mateo Terán — Portafolio</title>
 
-        html {
-            scroll-behavior: smooth;
-        }
+<style>
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #090909;
-            color: #ffffff;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* NAVBAR */
+html{
+    scroll-behavior:smooth;
+}
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 70px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 8%;
-            background: rgba(9, 9, 9, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #222;
-            z-index: 1000;
-        }
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#080808;
+    color:#f5f5f5;
+    overflow-x:hidden;
+}
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
 
-        .logo span {
-            color: #888;
-        }
+/* =========================
+   CÍRCULO DE FONDO
+========================= */
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+.circle{
+    position:absolute;
 
-        nav a {
-            color: #aaa;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+    width:650px;
+    height:650px;
 
-        nav a:hover {
-            color: white;
-        }
+    border:1px solid #292929;
+    border-radius:50%;
 
-        /* INICIO */
+    right:-170px;
+    top:80px;
 
-        .inicio {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10%;
-        }
+    z-index:-1;
 
-        .inicio .mini {
-            color: #888;
-            font-size: 14px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
+    animation:float 8s ease-in-out infinite;
+}
 
-        .inicio h1 {
-            font-size: clamp(55px, 9vw, 120px);
-            line-height: 0.95;
-            letter-spacing: -5px;
-        }
+.circle::before{
+    content:"";
 
-        .inicio h1 span {
-            color: #555;
-        }
+    position:absolute;
 
-        .inicio p {
-            max-width: 650px;
-            color: #999;
-            font-size: 18px;
-            line-height: 1.7;
-            margin-top: 30px;
-        }
+    width:430px;
+    height:430px;
 
-        .boton {
-            display: inline-block;
-            width: fit-content;
-            margin-top: 35px;
-            padding: 14px 25px;
-            border: 1px solid #444;
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            transition: 0.3s;
-        }
+    border:1px solid #202020;
+    border-radius:50%;
 
-        .boton:hover {
-            background: white;
-            color: black;
-        }
+    top:108px;
+    left:108px;
+}
 
-        /* SECCIONES */
+.circle::after{
+    content:"";
 
-        section {
-            padding: 110px 10%;
-        }
+    position:absolute;
 
-        .titulo-seccion {
-            margin-bottom: 50px;
-        }
+    width:12px;
+    height:12px;
 
-        .titulo-seccion p {
-            color: #666;
-            font-size: 13px;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
+    background:white;
+    border-radius:50%;
 
-        .titulo-seccion h2 {
-            font-size: 45px;
-        }
+    top:75px;
+    left:120px;
 
-        /* SOBRE MI */
+    box-shadow:0 0 30px rgba(255,255,255,.8);
+}
 
-        .sobre-mi {
-            border-top: 1px solid #1e1e1e;
-        }
+@keyframes float{
 
-        .sobre-contenido {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 70px;
-        }
+    0%,100%{
+        transform:translateY(0);
+    }
 
-        .sobre-contenido p {
-            color: #aaa;
-            line-height: 1.8;
-            font-size: 17px;
-        }
+    50%{
+        transform:translateY(-20px);
+    }
 
-        .datos {
-            display: grid;
-            gap: 15px;
-        }
+}
 
-        .dato {
-            background: #111;
-            border: 1px solid #222;
-            padding: 20px;
-            border-radius: 12px;
-        }
 
-        .dato small {
-            color: #666;
-        }
+/* =========================
+   NAVBAR
+========================= */
 
-        .dato p {
-            color: white;
-            margin-top: 5px;
-        }
+nav{
 
-        /* MATERIAS */
+    position:fixed;
+    top:0;
+    left:0;
 
-        .materias {
-            background: #0d0d0d;
-            border-top: 1px solid #1e1e1e;
-        }
+    width:100%;
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+    padding:25px 8%;
 
-        .card {
-            min-height: 220px;
-            background: #121212;
-            border: 1px solid #242424;
-            border-radius: 16px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: 0.3s;
-            cursor: pointer;
-        }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-        .card:hover {
-            transform: translateY(-7px);
-            border-color: #555;
-            background: #161616;
-        }
+    background:rgba(8,8,8,.72);
 
-        .numero {
-            color: #555;
-            font-size: 13px;
-        }
+    backdrop-filter:blur(15px);
 
-        .card h3 {
-            font-size: 25px;
-            margin-top: 30px;
-        }
+    border-bottom:1px solid rgba(255,255,255,.05);
 
-        .card p {
-            color: #777;
-            line-height: 1.5;
-            margin-top: 10px;
-        }
+    z-index:1000;
+}
 
-        .flecha {
-            margin-top: 25px;
-            color: #777;
-        }
+.logo{
 
-        /* MODAL / VENTANITA */
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:-1px;
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+}
 
-        .modal-contenido {
-            background: #111;
-            border: 1px solid #333;
-            width: 100%;
-            max-width: 650px;
-            padding: 40px;
-            border-radius: 20px;
-            position: relative;
-            animation: aparecer 0.25s ease;
-        }
+.logo span{
+    color:#666;
+}
 
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+nav ul{
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    display:flex;
+    list-style:none;
+    gap:35px;
 
-        .cerrar {
-            position: absolute;
-            right: 25px;
-            top: 20px;
-            font-size: 30px;
-            color: #777;
-            cursor: pointer;
-        }
+}
 
-        .cerrar:hover {
-            color: white;
-        }
+nav a{
 
-        .modal-contenido h2 {
-            margin-bottom: 15px;
-            font-size: 32px;
-        }
+    color:#777;
 
-        .modal-contenido p {
-            color: #aaa;
-            line-height: 1.7;
-        }
+    text-decoration:none;
 
-        /* FOOTER */
+    font-size:14px;
 
-        footer {
-            padding: 50px 10%;
-            border-top: 1px solid #222;
-            display: flex;
-            justify-content: space-between;
-            color: #555;
-            font-size: 14px;
-        }
+    transition:.3s;
 
-        /* RESPONSIVE */
+}
 
-        @media (max-width: 850px) {
+nav a:hover{
 
-            nav ul {
-                display: none;
-            }
+    color:white;
 
-            .sobre-contenido {
-                grid-template-columns: 1fr;
-            }
+}
 
-            .grid {
-                grid-template-columns: 1fr;
-            }
 
-            .inicio h1 {
-                letter-spacing: -2px;
-            }
+/* =========================
+   HERO
+========================= */
 
-            footer {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
+.hero{
 
-    </style>
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+
+    padding:120px 9% 70px;
+
+    position:relative;
+
+}
+
+.hero-content{
+
+    max-width:900px;
+
+}
+
+.label{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    color:#777;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+    margin-bottom:28px;
+
+}
+
+.label::before{
+
+    content:"";
+
+    width:35px;
+    height:1px;
+
+    background:#777;
+
+}
+
+.hero h1{
+
+    font-size:clamp(65px,10vw,145px);
+
+    line-height:.85;
+
+    letter-spacing:-8px;
+
+    font-weight:700;
+
+}
+
+.hero h1 span{
+
+    color:#383838;
+
+}
+
+.hero-description{
+
+    max-width:580px;
+
+    margin-top:40px;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:#888;
+
+}
+
+.hero-bottom{
+
+    margin-top:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 24px;
+
+    color:white;
+
+    border:1px solid #333;
+
+    border-radius:100px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    background:white;
+    color:black;
+
+    transform:translateY(-3px);
+
+}
+
+.year{
+
+    color:#444;
+    font-size:13px;
+
+}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+section{
+
+    padding:120px 9%;
+
+}
+
+.section-number{
+
+    color:#444;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+    margin-bottom:15px;
+
+}
+
+.section-title{
+
+    font-size:clamp(40px,6vw,75px);
+
+    letter-spacing:-4px;
+
+    margin-bottom:60px;
+
+}
+
+
+/* =========================
+   SOBRE MÍ
+========================= */
+
+.about{
+
+    border-top:1px solid #181818;
+
+}
+
+.about-grid{
+
+    display:grid;
+
+    grid-template-columns:1.3fr .7fr;
+
+    gap:100px;
+
+}
+
+.about-text{
+
+    font-size:21px;
+
+    line-height:1.8;
+
+    color:#888;
+
+    max-width:700px;
+
+}
+
+.about-text strong{
+
+    color:#eee;
+
+    font-weight:500;
+
+}
+
+.info{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.info-item{
+
+    padding:22px 0;
+
+    border-bottom:1px solid #202020;
+
+}
+
+.info-item:first-child{
+
+    border-top:1px solid #202020;
+
+}
+
+.info-label{
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    color:#444;
+
+    margin-bottom:8px;
+
+}
+
+.info-value{
+
+    font-size:15px;
+
+    color:#aaa;
+
+}
+
+
+/* =========================
+   MATERIAS
+========================= */
+
+.subjects{
+
+    background:#0b0b0b;
+
+    border-top:1px solid #181818;
+
+}
+
+.subject-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    border-top:1px solid #222;
+    border-left:1px solid #222;
+
+}
+
+.subject{
+
+    min-height:300px;
+
+    padding:35px;
+
+    border-right:1px solid #222;
+    border-bottom:1px solid #222;
+
+    position:relative;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    transition:.4s;
+
+}
+
+.subject::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    border:1px solid #242424;
+
+    border-radius:50%;
+
+    right:-90px;
+    bottom:-90px;
+
+    transition:.5s;
+
+}
+
+.subject:hover{
+
+    background:#111;
+
+}
+
+.subject:hover::before{
+
+    width:240px;
+    height:240px;
+
+    right:-80px;
+    bottom:-80px;
+
+    border-color:#555;
+
+}
+
+.subject-number{
+
+    color:#444;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+}
+
+.subject-content{
+
+    position:absolute;
+
+    bottom:35px;
+
+    left:35px;
+    right:35px;
+
+}
+
+.subject h3{
+
+    font-size:25px;
+
+    margin-bottom:10px;
+
+    font-weight:500;
+
+}
+
+.subject p{
+
+    color:#666;
+
+    line-height:1.6;
+
+    font-size:14px;
+
+}
+
+.arrow{
+
+    position:absolute;
+
+    right:30px;
+    top:30px;
+
+    width:35px;
+    height:35px;
+
+    border:1px solid #333;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#666;
+
+    transition:.3s;
+
+}
+
+.subject:hover .arrow{
+
+    background:white;
+
+    color:black;
+
+    border-color:white;
+
+    transform:rotate(45deg);
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.82);
+
+    backdrop-filter:blur(14px);
+
+    z-index:3000;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+}
+
+.modal-box{
+
+    width:100%;
+
+    max-width:680px;
+
+    background:#0e0e0e;
+
+    border:1px solid #292929;
+
+    padding:50px;
+
+    position:relative;
+
+    animation:showModal .35s ease;
+
+}
+
+@keyframes showModal{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px) scale(.98);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+.close{
+
+    position:absolute;
+
+    top:25px;
+    right:30px;
+
+    font-size:26px;
+
+    color:#555;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.close:hover{
+
+    color:white;
+
+}
+
+.modal-number{
+
+    color:#444;
+
+    letter-spacing:3px;
+
+    font-size:11px;
+
+    margin-bottom:25px;
+
+}
+
+.modal-box h2{
+
+    font-size:45px;
+
+    letter-spacing:-2px;
+
+    margin-bottom:25px;
+
+}
+
+.modal-box p{
+
+    color:#888;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    padding:50px 9%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    border-top:1px solid #181818;
+
+    color:#444;
+
+    font-size:12px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero h1{
+        letter-spacing:-5px;
+    }
+
+    .circle{
+
+        width:450px;
+        height:450px;
+
+        right:-250px;
+
+    }
+
+    .about-grid{
+
+        grid-template-columns:1fr;
+
+        gap:60px;
+
+    }
+
+    .subject-grid{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .hero h1{
+
+        font-size:65px;
+
+        letter-spacing:-4px;
+
+    }
+
+    .subject-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .modal-box{
+
+        padding:35px 25px;
+
+    }
+
+    footer{
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-    <!-- NAVEGACIÓN -->
 
-    <nav>
-        <div class="logo">MT<span>.</span></div>
+<!-- CÍRCULO DECORATIVO -->
 
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre-mi">Sobre mí</a></li>
-            <li><a href="#materias">Materias</a></li>
-        </ul>
-    </nav>
+<div class="circle"></div>
 
 
-    <!-- INICIO -->
+<!-- NAVEGACIÓN -->
 
-    <section class="inicio" id="inicio">
+<nav>
 
-        <div class="mini">PORTAFOLIO DIGITAL</div>
+    <div class="logo">
+        MT<span>°</span>
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#inicio">Inicio</a>
+        </li>
+
+        <li>
+            <a href="#sobre">Sobre mí</a>
+        </li>
+
+        <li>
+            <a href="#materias">Materias</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+
+<!-- HERO -->
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <div class="label">
+            PORTAFOLIO DIGITAL
+        </div>
 
         <h1>
             Mateo<br>
             <span>Terán.</span>
         </h1>
 
-        <p>
-            Este es mi portafolio digital académico. Aquí se encuentran
-            trabajos, proyectos y actividades realizadas durante el año
-            escolar en las diferentes materias.
+        <p class="hero-description">
+
+            Un espacio donde organizo mis proyectos,
+            actividades y aprendizajes desarrollados
+            durante el año escolar.
+
         </p>
 
-        <a href="#materias" class="boton">
-            Ver mis materias ↓
-        </a>
+        <div class="hero-bottom">
 
-    </section>
+            <a class="btn" href="#materias">
 
+                Explorar portafolio
 
-    <!-- SOBRE MI -->
+                <span>↓</span>
 
-    <section class="sobre-mi" id="sobre-mi">
+            </a>
 
-        <div class="titulo-seccion">
-            <p>01 / PRESENTACIÓN</p>
-            <h2>Sobre mí</h2>
-        </div>
-
-        <div class="sobre-contenido">
-
-            <div>
-                <p>
-                    Mi nombre es Mateo Terán. Este portafolio fue creado
-                    para organizar y presentar algunos de los trabajos,
-                    proyectos y aprendizajes desarrollados durante el año
-                    escolar.
-                    <br><br>
-                    Cada sección corresponde a una materia y permite
-                    visualizar las diferentes actividades realizadas.
-                </p>
-            </div>
-
-            <div class="datos">
-
-                <div class="dato">
-                    <small>ESTUDIANTE</small>
-                    <p>Mateo Terán</p>
-                </div>
-
-                <div class="dato">
-                    <small>TIPO</small>
-                    <p>Portafolio académico digital</p>
-                </div>
-
-                <div class="dato">
-                    <small>AÑO</small>
-                    <p>2026</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MATERIAS -->
-
-    <section class="materias" id="materias">
-
-        <div class="titulo-seccion">
-            <p>02 / PORTAFOLIO</p>
-            <h2>Mis materias</h2>
-        </div>
-
-
-        <div class="grid">
-
-            <div class="card" onclick="abrirModal('robotica')">
-                <span class="numero">01</span>
-
-                <div>
-                    <h3>Robótica</h3>
-                    <p>Programación, electrónica y proyectos tecnológicos.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </div>
-
-
-            <div class="card" onclick="abrirModal('matematicas')">
-                <span class="numero">02</span>
-
-                <div>
-                    <h3>Matemáticas</h3>
-                    <p>Ejercicios, problemas y actividades matemáticas.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </div>
-
-
-            <div class="card" onclick="abrirModal('lengua')">
-                <span class="numero">03</span>
-
-                <div>
-                    <h3>Lengua y Literatura</h3>
-                    <p>Lecturas, análisis, escritura y literatura.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </div>
-
-
-            <div class="card" onclick="abrirModal('ingles')">
-                <span class="numero">04</span>
-
-                <div>
-                    <h3>English</h3>
-                    <p>Projects, activities and English assignments.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </div>
-
-
-            <div class="card" onclick="abrirModal('fisica')">
-                <span class="numero">05</span>
-
-                <div>
-                    <h3>Física</h3>
-                    <p>Experimentos, conceptos y ejercicios.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </div>
-
-
-            <div class="card" onclick="abrirModal('arte')">
-                <span class="numero">06</span>
-
-                <div>
-                    <h3>Arte</h3>
-                    <p>Lenguaje visual, creatividad y proyectos artísticos.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- VENTANITAS -->
-
-    <div class="modal" id="modal">
-
-        <div class="modal-contenido">
-
-            <span class="cerrar" onclick="cerrarModal()">×</span>
-
-            <h2 id="modalTitulo"></h2>
-
-            <p id="modalTexto"></p>
+            <span class="year">
+                2026
+            </span>
 
         </div>
 
     </div>
 
-
-    <!-- FOOTER -->
-
-    <footer>
-        <p>© 2026 Mateo Terán</p>
-        <p>Portafolio Digital</p>
-    </footer>
+</section>
 
 
-    <!-- JAVASCRIPT -->
 
-    <script>
+<!-- SOBRE MÍ -->
 
-        const materias = {
+<section class="about" id="sobre">
 
-            robotica: {
-                titulo: "Robótica",
-                texto: "En esta sección se encuentran mis trabajos de robótica, programación, electrónica, sensores y proyectos tecnológicos realizados durante el año."
-            },
+    <p class="section-number">
+        01 — PRESENTACIÓN
+    </p>
 
-            matematicas: {
-                titulo: "Matemáticas",
-                texto: "Aquí se encuentran ejercicios, actividades y problemas matemáticos desarrollados durante las clases."
-            },
-
-            lengua: {
-                titulo: "Lengua y Literatura",
-                texto: "Esta sección contiene trabajos relacionados con literatura, lectura, análisis de textos y actividades de escritura."
-            },
-
-            ingles: {
-                titulo: "English",
-                texto: "This section contains my English projects, assignments, presentations and activities."
-            },
-
-            fisica: {
-                titulo: "Física",
-                texto: "Aquí se encuentran trabajos, ejercicios y actividades relacionadas con los conceptos estudiados en Física."
-            },
-
-            arte: {
-                titulo: "Arte",
-                texto: "Esta sección reúne trabajos relacionados con creatividad, lenguaje visual, colores, percepción y proyectos artísticos."
-            }
-
-        };
+    <h2 class="section-title">
+        Sobre mí.
+    </h2>
 
 
-        function abrirModal(materia) {
-
-            document.getElementById("modalTitulo").innerText =
-                materias[materia].titulo;
-
-            document.getElementById("modalTexto").innerText =
-                materias[materia].texto;
-
-            document.getElementById("modal").style.display = "flex";
-        }
+    <div class="about-grid">
 
 
-        function cerrarModal() {
+        <div class="about-text">
 
-            document.getElementById("modal").style.display = "none";
+            Soy <strong>Mateo Terán</strong>.
 
-        }
+            Este portafolio reúne una selección
+            de mis trabajos, proyectos y actividades
+            desarrolladas durante el año escolar.
+
+            <br><br>
+
+            El objetivo es mostrar mi proceso,
+            aprendizaje y progreso en las distintas
+            materias.
+
+        </div>
 
 
-        window.onclick = function(event) {
+        <div class="info">
 
-            const modal = document.getElementById("modal");
 
-            if (event.target === modal) {
-                cerrarModal();
-            }
+            <div class="info-item">
 
-        }
+                <div class="info-label">
+                    ESTUDIANTE
+                </div>
 
-    </script>
+                <div class="info-value">
+                    Mateo Terán
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    PROYECTO
+                </div>
+
+                <div class="info-value">
+                    Portafolio Digital
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    AÑO
+                </div>
+
+                <div class="info-value">
+                    2026
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- MATERIAS -->
+
+<section class="subjects" id="materias">
+
+    <p class="section-number">
+        02 — TRABAJOS
+    </p>
+
+    <h2 class="section-title">
+        Materias.
+    </h2>
+
+
+    <div class="subject-grid">
+
+
+        <!-- ROBÓTICA -->
+
+        <div class="subject"
+             onclick="openSubject('robotica')">
+
+            <span class="subject-number">
+                01
+            </span>
+
+            <span class="arrow">
+                ↗
+            </span>
+
+            <div class="subject-content">
+
+                <h3>
+                    Robótica
+                </h3>
+
+                <p>
+                    Programación, electrónica,
+                    sensores y proyectos tecnológicos.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MATEMÁTICAS -->
+
+        <div class="subject"
+             onclick="openSubject('matematicas')">
+
+            <span class="subject-number">
+                02
+            </span>
+
+            <span class="arrow">
+                ↗
+            </span>
+
+            <div class="subject-content">
+
+                <h3>
+                    Matemáticas
+                </h3>
+
+                <p>
+                    Ejercicios, razonamiento
+                    y resolución de problemas.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LENGUA -->
+
+        <div class="subject"
+             onclick="openSubject('lengua')">
+
+            <span class="subject-number">
+                03
+            </span>
+
+            <span class="arrow">
+                ↗
+            </span>
+
+            <div class="subject-content">
+
+                <h3>
+                    Lengua y Literatura
+                </h3>
+
+                <p>
+                    Literatura, análisis,
+                    lectura y escritura.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ENGLISH -->
+
+        <div class="subject"
+             onclick="openSubject('english')">
+
+            <span class="subject-number">
+                04
+            </span>
+
+            <span class="arrow">
+                ↗
+            </span>
+
+            <div class="subject-content">
+
+                <h3>
+                    English
+                </h3>
+
+                <p>
+                    Projects, presentations
+                    and English assignments.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FÍSICA -->
+
+        <div class="subject"
+             onclick="openSubject('fisica')">
+
+            <span class="subject-number">
+                05
+            </span>
+
+            <span class="arrow">
+                ↗
+            </span>
+
+            <div class="subject-content">
+
+                <h3>
+                    Física
+                </h3>
+
+                <p>
+                    Conceptos, experimentos
+                    y resolución de ejercicios.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ARTE -->
+
+        <div class="subject"
+             onclick="openSubject('arte')">
+
+            <span class="subject-number">
+                06
+            </span>
+
+            <span class="arrow">
+                ↗
+            </span>
+
+            <div class="subject-content">
+
+                <h3>
+                    Arte
+                </h3>
+
+                <p>
+                    Lenguaje visual,
+                    creatividad y expresión.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <span class="close"
+              onclick="closeModal()">
+
+            ×
+
+        </span>
+
+        <div class="modal-number"
+             id="modalNumber">
+
+        </div>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalText"></p>
+
+    </div>
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <span>
+        © 2026 Mateo Terán
+    </span>
+
+    <span>
+        Portafolio Digital
+    </span>
+
+</footer>
+
+
+
+<script>
+
+
+const subjects = {
+
+
+    robotica:{
+
+        number:"01 — ROBÓTICA",
+
+        title:"Robótica",
+
+        text:
+        "En esta sección se encuentran mis trabajos de robótica, programación, electrónica, sensores y proyectos tecnológicos realizados durante el año escolar."
+
+    },
+
+
+    matematicas:{
+
+        number:"02 — MATEMÁTICAS",
+
+        title:"Matemáticas",
+
+        text:
+        "Aquí se encuentran ejercicios, actividades y problemas matemáticos desarrollados durante las clases."
+
+    },
+
+
+    lengua:{
+
+        number:"03 — LENGUA Y LITERATURA",
+
+        title:"Lengua y Literatura",
+
+        text:
+        "Esta sección contiene trabajos relacionados con literatura, lectura, análisis de textos y actividades de escritura."
+
+    },
+
+
+    english:{
+
+        number:"04 — ENGLISH",
+
+        title:"English",
+
+        text:
+        "This section contains my English projects, assignments, presentations and activities."
+
+    },
+
+
+    fisica:{
+
+        number:"05 — FÍSICA",
+
+        title:"Física",
+
+        text:
+        "Aquí se encuentran trabajos, ejercicios y actividades relacionadas con los conceptos estudiados en Física."
+
+    },
+
+
+    arte:{
+
+        number:"06 — ARTE",
+
+        title:"Arte",
+
+        text:
+        "Esta sección reúne trabajos relacionados con creatividad, lenguaje visual, colores, percepción y proyectos artísticos."
+
+    }
+
+
+};
+
+
+
+function openSubject(subject){
+
+    const data = subjects[subject];
+
+    document.getElementById("modalNumber").textContent =
+        data.number;
+
+    document.getElementById("modalTitle").textContent =
+        data.title;
+
+    document.getElementById("modalText").textContent =
+        data.text;
+
+    document.getElementById("modal").style.display =
+        "flex";
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+function closeModal(){
+
+    document.getElementById("modal").style.display =
+        "none";
+
+    document.body.style.overflow =
+        "auto";
+
+}
+
+
+
+document.getElementById("modal")
+.addEventListener("click", function(event){
+
+    if(event.target === this){
+
+        closeModal();
+
+    }
+
+});
+
+
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        closeModal();
+
+    }
+
+});
+
+
+</script>
+
 
 </body>
 </html>
