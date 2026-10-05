@@ -20,9 +20,10 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #090909;
             color: #ffffff;
+            overflow-x: hidden;
         }
 
-        /* NAVBAR */
+        /* NAVEGACIÓN */
         nav {
             position: fixed;
             top: 0;
@@ -56,20 +57,51 @@
         nav a {
             color: #aaa;
             text-decoration: none;
-            transition: 0.3s;
+            transition: color 0.3s;
         }
 
         nav a:hover {
             color: white;
         }
 
+        /* SECCIONES */
+        section {
+            padding: 110px 10%;
+            scroll-margin-top: 70px;
+        }
+
+        .titulo-seccion {
+            margin-bottom: 50px;
+        }
+
+        .titulo-seccion p {
+            color: #999;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .titulo-seccion h2 {
+            font-size: 45px;
+            letter-spacing: -2px;
+        }
+
         /* INICIO */
         .inicio {
             min-height: 100vh;
+            min-height: 100svh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 10%;
+            padding: 120px 10% 80px;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        .inicio > :not(.orbita) {
+            position: relative;
+            z-index: 1;
         }
 
         .inicio .mini {
@@ -83,14 +115,15 @@
             font-size: clamp(55px, 9vw, 120px);
             line-height: 0.95;
             letter-spacing: -5px;
+            font-weight: 700;
         }
 
         .inicio h1 span {
-            color: #555;
+            color: #737373;
         }
 
         .inicio p {
-            max-width: 650px;
+            max-width: 540px;
             color: #999;
             font-size: 18px;
             line-height: 1.7;
@@ -103,10 +136,10 @@
             margin-top: 35px;
             padding: 14px 25px;
             border: 1px solid #444;
-            border-radius: 8px;
+            border-radius: 999px;
             color: white;
             text-decoration: none;
-            transition: 0.3s;
+            transition: background 0.3s, color 0.3s;
         }
 
         .boton:hover {
@@ -114,235 +147,7 @@
             color: black;
         }
 
-        /* SECCIONES */
-        section {
-            padding: 110px 10%;
-        }
-
-        .titulo-seccion {
-            margin-bottom: 50px;
-        }
-
-        .titulo-seccion p {
-            color: #666;
-            font-size: 13px;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
-
-        .titulo-seccion h2 {
-            font-size: 45px;
-        }
-
-        /* SOBRE MÍ */
-        .sobre-mi {
-            border-top: 1px solid #1e1e1e;
-        }
-
-        .sobre-contenido {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 70px;
-        }
-
-        .sobre-contenido p {
-            color: #aaa;
-            line-height: 1.8;
-            font-size: 17px;
-        }
-
-        .datos {
-            display: grid;
-            gap: 15px;
-        }
-
-        .dato {
-            background: #111;
-            border: 1px solid #222;
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        .dato small {
-            color: #666;
-        }
-
-        .dato p {
-            color: white;
-            margin-top: 5px;
-        }
-
-        /* MATERIAS */
-        .materias {
-            background: #0d0d0d;
-            border-top: 1px solid #1e1e1e;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .card {
-            min-height: 220px;
-            background: #121212;
-            border: 1px solid #242424;
-            border-radius: 16px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: translateY(-7px);
-            border-color: #555;
-            background: #161616;
-        }
-
-        .numero {
-            color: #555;
-            font-size: 13px;
-        }
-
-        .card h3 {
-            font-size: 25px;
-            margin-top: 30px;
-        }
-
-        .card p {
-            color: #777;
-            line-height: 1.5;
-            margin-top: 10px;
-        }
-
-        .flecha {
-            margin-top: 25px;
-            color: #777;
-        }
-
-        /* VENTANITAS */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-contenido {
-            background: #111;
-            border: 1px solid #333;
-            width: 100%;
-            max-width: 650px;
-            padding: 40px;
-            border-radius: 20px;
-            position: relative;
-            animation: aparecer 0.25s ease;
-        }
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cerrar {
-            position: absolute;
-            right: 25px;
-            top: 20px;
-            font-size: 30px;
-            color: #777;
-            cursor: pointer;
-        }
-
-        .cerrar:hover {
-            color: white;
-        }
-
-        .modal-contenido h2 {
-            margin-bottom: 15px;
-            font-size: 32px;
-        }
-
-        .modal-contenido p {
-            color: #aaa;
-            line-height: 1.7;
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 50px 10%;
-            border-top: 1px solid #222;
-            display: flex;
-            justify-content: space-between;
-            color: #555;
-            font-size: 14px;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 850px) {
-            nav ul {
-                display: none;
-            }
-
-            .sobre-contenido {
-                grid-template-columns: 1fr;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .inicio h1 {
-                letter-spacing: -2px;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-        /* AJUSTES DEL PORTAFOLIO */
-        body {
-            overflow-x: hidden;
-        }
-
-        section {
-            scroll-margin-top: 70px;
-        }
-
-        .inicio {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            padding-top: 120px;
-            padding-bottom: 80px;
-            min-height: 100svh;
-        }
-
-        .inicio > :not(.orbita) {
-            position: relative;
-            z-index: 1;
-        }
-
+        /* CÍRCULO DECORATIVO */
         .orbita {
             position: absolute;
             width: min(65vw, 720px);
@@ -387,48 +192,81 @@
             }
         }
 
-        .inicio h1 {
-            font-weight: 700;
+        /* SOBRE MÍ */
+        .sobre-mi {
+            border-top: 1px solid #1e1e1e;
         }
 
-        .inicio h1 span {
-            color: #737373;
+        .sobre-contenido {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
         }
 
-        .inicio p {
-            max-width: 540px;
+        .sobre-contenido p {
+            color: #aaa;
+            line-height: 1.8;
+            font-size: 17px;
         }
 
-        .boton {
-            border-radius: 999px;
-        }
-
-        .titulo-seccion h2 {
-            letter-spacing: -2px;
+        .datos {
+            display: grid;
+            gap: 15px;
         }
 
         .dato {
             background: transparent;
-            border: 0;
             border-bottom: 1px solid #252525;
-            border-radius: 0;
             padding: 20px 0;
         }
 
-        .dato small,
-        .titulo-seccion p,
-        .numero {
+        .dato small {
             color: #999;
         }
 
+        .dato p {
+            color: white;
+            margin-top: 5px;
+        }
+
+        /* MATERIAS */
+        .materias {
+            background: #0d0d0d;
+            border-top: 1px solid #1e1e1e;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
         .card {
+            min-height: 220px;
+            background: #121212;
+            border: 1px solid #242424;
+            border-radius: 14px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition:
+                transform 0.3s,
+                border-color 0.3s,
+                background 0.3s;
+            cursor: pointer;
             font: inherit;
             color: inherit;
             text-align: left;
             width: 100%;
             position: relative;
             overflow: hidden;
-            border-radius: 14px;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: #555;
+            background: #161616;
         }
 
         .card::after {
@@ -448,8 +286,24 @@
             transform: scale(1.2);
         }
 
-        .card p,
+        .numero {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .card h3 {
+            font-size: 25px;
+            margin-top: 30px;
+        }
+
+        .card p {
+            color: #a1a1a1;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
         .flecha {
+            margin-top: 25px;
             color: #a1a1a1;
         }
 
@@ -458,12 +312,13 @@
             outline-offset: 5px;
         }
 
+        /* VENTANITAS */
         .modal {
-            display: block;
+            position: fixed;
             inset: 0;
             margin: auto;
-            height: auto;
             width: min(650px, calc(100% - 32px));
+            max-height: calc(100vh - 32px);
             max-height: calc(100svh - 32px);
             padding: 0;
             background: #111;
@@ -483,10 +338,28 @@
         }
 
         .modal-contenido {
-            border: 0;
+            padding: 55px 40px 40px;
+            position: relative;
+            animation: aparecer 0.25s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .cerrar {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            cursor: pointer;
             border: 0;
             background: transparent;
             padding: 2px 8px;
@@ -495,9 +368,33 @@
             color: #aaa;
         }
 
+        .cerrar:hover {
+            color: white;
+        }
+
+        .modal-contenido h2 {
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+
+        .modal-contenido p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px 10%;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* TABLETS */
         @media (max-width: 850px) {
             nav ul {
-                display: flex;
                 gap: 18px;
             }
 
@@ -505,8 +402,16 @@
                 font-size: 13px;
             }
 
+            .sobre-contenido {
+                grid-template-columns: 1fr;
+            }
+
             .grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .inicio h1 {
+                letter-spacing: -2px;
             }
 
             .orbita {
@@ -514,8 +419,14 @@
                 right: -400px;
                 top: 20%;
             }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
 
+        /* CELULARES */
         @media (max-width: 540px) {
             nav {
                 padding: 0 6%;
@@ -530,8 +441,7 @@
             }
 
             .inicio {
-                padding-left: 7%;
-                padding-right: 7%;
+                padding: 120px 7% 80px;
             }
 
             .grid {
@@ -644,95 +554,137 @@
         </div>
 
         <div class="grid">
-            <button
-                type="button"
-                class="card"
-                onclick="abrirModal('robotica')"
-            >
-                <span class="numero">01</span>
 
+            <button type="button" class="card"
+                onclick="abrirModal('matematicas')">
+                <span class="numero">01</span>
+                <div>
+                    <h3>Matemática</h3>
+                    <p>Ejercicios, razonamiento y resolución de problemas.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('literatura')">
+                <span class="numero">02</span>
+                <div>
+                    <h3>Literatura</h3>
+                    <p>Lecturas, análisis de obras y actividades de escritura.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('ingles')">
+                <span class="numero">03</span>
+                <div>
+                    <h3>Inglés</h3>
+                    <p>Projects, presentations and English assignments.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('engElective')">
+                <span class="numero">04</span>
+                <div>
+                    <h3>ENG Elective</h3>
+                    <p>English activities, communication and projects.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('humanidades')">
+                <span class="numero">05</span>
+                <div>
+                    <h3>Humanidades</h3>
+                    <p>Sociedad, cultura y pensamiento crítico.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('desarrolloHumano')">
+                <span class="numero">06</span>
+                <div>
+                    <h3>Desarrollo Humano</h3>
+                    <p>Bienestar, relaciones y crecimiento personal.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('realidadNacional')">
+                <span class="numero">07</span>
+                <div>
+                    <h3>Realidad Nacional</h3>
+                    <p>Historia y realidad social del Ecuador.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('ciudadania')">
+                <span class="numero">08</span>
+                <div>
+                    <h3>Ciudadanía</h3>
+                    <p>Derechos, responsabilidades y participación ciudadana.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('informatica')">
+                <span class="numero">09 / LUNES</span>
+                <div>
+                    <h3>Informática</h3>
+                    <p>Programación, herramientas digitales y tecnología.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('robotica')">
+                <span class="numero">10 / MIÉRCOLES</span>
                 <div>
                     <h3>Robótica</h3>
-                    <p>Programación, electrónica y proyectos tecnológicos.</p>
+                    <p>Robots, sensores y proyectos de programación.</p>
                 </div>
-
                 <span class="flecha">Abrir →</span>
             </button>
 
-            <button
-                type="button"
-                class="card"
-                onclick="abrirModal('matematicas')"
-            >
-                <span class="numero">02</span>
-
-                <div>
-                    <h3>Matemáticas</h3>
-                    <p>Ejercicios, problemas y actividades matemáticas.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </button>
-
-            <button
-                type="button"
-                class="card"
-                onclick="abrirModal('lengua')"
-            >
-                <span class="numero">03</span>
-
-                <div>
-                    <h3>Lengua y Literatura</h3>
-                    <p>Lecturas, análisis, escritura y literatura.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </button>
-
-            <button
-                type="button"
-                class="card"
-                onclick="abrirModal('ingles')"
-            >
-                <span class="numero">04</span>
-
-                <div>
-                    <h3>English</h3>
-                    <p>Projects, activities and English assignments.</p>
-                </div>
-
-                <span class="flecha">Abrir →</span>
-            </button>
-
-            <button
-                type="button"
-                class="card"
-                onclick="abrirModal('fisica')"
-            >
-                <span class="numero">05</span>
-
+            <button type="button" class="card"
+                onclick="abrirModal('fisica')">
+                <span class="numero">11 / VIERNES</span>
                 <div>
                     <h3>Física</h3>
-                    <p>Experimentos, conceptos y ejercicios.</p>
+                    <p>Conceptos, experimentos y resolución de ejercicios.</p>
                 </div>
-
                 <span class="flecha">Abrir →</span>
             </button>
 
-            <button
-                type="button"
-                class="card"
-                onclick="abrirModal('arte')"
-            >
-                <span class="numero">06</span>
-
+            <button type="button" class="card"
+                onclick="abrirModal('literature')">
+                <span class="numero">12</span>
                 <div>
-                    <h3>Arte</h3>
-                    <p>Lenguaje visual, creatividad y proyectos artísticos.</p>
+                    <h3>Literature</h3>
+                    <p>Reading, literary analysis and written assignments.</p>
                 </div>
-
                 <span class="flecha">Abrir →</span>
             </button>
+
+            <button type="button" class="card"
+                onclick="abrirModal('deportes')">
+                <span class="numero">13</span>
+                <div>
+                    <h3>Deportes</h3>
+                    <p>Actividad física, habilidades y trabajo en equipo.</p>
+                </div>
+                <span class="flecha">Abrir →</span>
+            </button>
+
         </div>
     </section>
 
@@ -765,66 +717,110 @@
     <!-- JAVASCRIPT -->
     <script>
         const materias = {
-            robotica: {
-                titulo: "Robótica",
-                texto: "En esta sección se encuentran mis trabajos de robótica, programación, electrónica, sensores y proyectos tecnológicos realizados durante el año."
-            },
-
             matematicas: {
-                titulo: "Matemáticas",
-                texto: "Aquí se encuentran ejercicios, actividades y problemas matemáticos desarrollados durante las clases."
+                titulo: "Matemática",
+                texto: "Aquí se encuentran mis ejercicios, actividades y trabajos de Matemática."
             },
 
-            lengua: {
-                titulo: "Lengua y Literatura",
-                texto: "Esta sección contiene trabajos relacionados con literatura, lectura, análisis de textos y actividades de escritura."
+            literatura: {
+                titulo: "Literatura",
+                texto: "Esta sección reúne mis lecturas, análisis de obras literarias y actividades de escritura."
             },
 
             ingles: {
-                titulo: "English",
+                titulo: "Inglés",
                 texto: "This section contains my English projects, assignments, presentations and activities."
+            },
+
+            engElective: {
+                titulo: "ENG Elective",
+                texto: "This section includes my elective English activities, projects and presentations."
+            },
+
+            humanidades: {
+                titulo: "Humanidades",
+                texto: "Aquí se encuentran mis trabajos sobre sociedad, cultura y pensamiento crítico."
+            },
+
+            desarrolloHumano: {
+                titulo: "Desarrollo Humano",
+                texto: "Esta sección contiene actividades y reflexiones sobre bienestar, relaciones interpersonales y crecimiento personal."
+            },
+
+            realidadNacional: {
+                titulo: "Realidad Nacional",
+                texto: "Aquí se reúnen mis trabajos sobre la historia y la realidad social del Ecuador."
+            },
+
+            ciudadania: {
+                titulo: "Ciudadanía",
+                texto: "Esta sección contiene mis actividades sobre derechos, responsabilidades y participación ciudadana."
+            },
+
+            informatica: {
+                titulo: "Informática",
+                texto: "Materia de opción del lunes. Aquí se encuentran mis trabajos de programación, herramientas digitales y tecnología."
+            },
+
+            robotica: {
+                titulo: "Robótica",
+                texto: "Materia de opción del miércoles. Esta sección reúne mis proyectos de robótica, sensores y programación."
             },
 
             fisica: {
                 titulo: "Física",
-                texto: "Aquí se encuentran trabajos, ejercicios y actividades relacionadas con los conceptos estudiados en Física."
+                texto: "Materia de opción del viernes. Aquí se encuentran mis ejercicios, experimentos y trabajos de Física."
             },
 
-            arte: {
-                titulo: "Arte",
-                texto: "Esta sección reúne trabajos relacionados con creatividad, lenguaje visual, colores, percepción y proyectos artísticos."
+            literature: {
+                titulo: "Literature",
+                texto: "This section contains my reading activities, literary analyses and written assignments."
+            },
+
+            deportes: {
+                titulo: "Deportes",
+                texto: "Aquí se encuentran mis actividades y trabajos relacionados con el deporte, la actividad física y el trabajo en equipo."
             }
         };
 
+        const modal = document.getElementById("modal");
+
         function abrirModal(materia) {
-            document.getElementById("modalTitulo").innerText =
-                materias[materia].titulo;
+            const datos = materias[materia];
 
-            document.getElementById("modalTexto").innerText =
-                materias[materia].texto;
+            if (!datos) return;
 
-            document.getElementById("modal").showModal();
+            document.getElementById("modalTitulo").textContent =
+                datos.titulo;
+
+            document.getElementById("modalTexto").textContent =
+                datos.texto;
+
+            modal.showModal();
             document.body.style.overflow = "hidden";
         }
 
         function cerrarModal() {
-            document.getElementById("modal").close();
+            modal.close();
         }
 
-        document.getElementById("modal").addEventListener(
-            "close",
-            function () {
-                document.body.style.overflow = "";
-            }
-        );
+        modal.addEventListener("close", function () {
+            document.body.style.overflow = "";
+        });
 
-        window.onclick = function (event) {
-            const modal = document.getElementById("modal");
-
+        modal.addEventListener("click", function (event) {
             if (event.target === modal) {
-                cerrarModal();
+                const limites = modal.getBoundingClientRect();
+
+                const fuera =
+                    event.clientX < limites.left ||
+                    event.clientX > limites.right ||
+                    event.clientY < limites.top ||
+                    event.clientY > limites.bottom;
+
+                if (fuera) cerrarModal();
             }
-        };
+        });
     </script>
 
 </body>
