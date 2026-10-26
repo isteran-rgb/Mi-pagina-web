@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -382,7 +383,7 @@
             line-height: 1.7;
         }
 
-        /* TRABAJOS DE HUMANIDADES */
+        /* TRABAJOS */
         .trabajo-video {
             margin-top: 28px;
             padding-top: 24px;
@@ -596,12 +597,13 @@
                 <span class="flecha">Abrir →</span>
             </button>
 
+            <!-- LENGUA Y LITERATURA -->
             <button type="button" class="card"
                 onclick="abrirModal('literatura')">
                 <span class="numero">02</span>
                 <div>
-                    <h3>Literatura</h3>
-                    <p>Lecturas, análisis de obras y actividades de escritura.</p>
+                    <h3>Lengua y Literatura</h3>
+                    <p>Lecturas, análisis de obras, escritura y proyectos audiovisuales.</p>
                 </div>
                 <span class="flecha">Abrir →</span>
             </button>
@@ -737,6 +739,26 @@
             <h2 id="modalTitulo"></h2>
             <p id="modalTexto"></p>
 
+            <!-- NUEVO VIDEO DE LENGUA Y LITERATURA -->
+            <article class="trabajo-video" id="trabajoLengua" hidden>
+                <h3>Video de Lengua y Literatura</h3>
+
+                <p>
+                    Trabajo audiovisual realizado para la materia
+                    de Lengua y Literatura. Puedes visualizar
+                    el video completo a través de Canva.
+                </p>
+
+                <a
+                    class="boton"
+                    href="https://canva.link/ac7n69w1ak6eayl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Ver video en Canva ↗
+                </a>
+            </article>
+
             <!-- CANVA EN HUMANIDADES -->
             <article class="trabajo-video" id="trabajoCanva" hidden>
                 <h3>Presentación de Humanidades</h3>
@@ -799,8 +821,8 @@
             },
 
             literatura: {
-                titulo: "Literatura",
-                texto: "Esta sección reúne mis lecturas, análisis de obras literarias y actividades de escritura."
+                titulo: "Lengua y Literatura",
+                texto: "Esta sección reúne mis lecturas, análisis de obras literarias, actividades de escritura y proyectos audiovisuales."
             },
 
             ingles: {
@@ -872,7 +894,11 @@
             document.getElementById("modalTexto").textContent =
                 datos.texto;
 
-            // Canva y el video aparecen solo en Humanidades.
+            // Video de Lengua y Literatura
+            document.getElementById("trabajoLengua").hidden =
+                materia !== "literatura";
+
+            // Trabajos de Humanidades
             document.getElementById("trabajoDebate").hidden =
                 materia !== "humanidades";
 
