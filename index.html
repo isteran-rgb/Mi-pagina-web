@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -759,6 +758,22 @@
                 </a>
             </article>
 
+            <!-- PRESENTACIÓN DE INGLÉS -->
+            <article class="trabajo-video" id="trabajoIngles" hidden>
+                <h3>Presentación de Inglés</h3>
+
+                <p>Consulta mi trabajo de Inglés en Canva.</p>
+
+                <a
+                    class="boton"
+                    href="https://canva.link/q3axps5f78v2dfr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Ver presentación en Canva ↗
+                </a>
+            </article>
+
             <!-- CANVA EN HUMANIDADES -->
             <article class="trabajo-video" id="trabajoCanva" hidden>
                 <h3>Presentación de Humanidades</h3>
@@ -897,6 +912,10 @@
             // Video de Lengua y Literatura
             document.getElementById("trabajoLengua").hidden =
                 materia !== "literatura";
+
+            // Presentación de Inglés
+            document.getElementById("trabajoIngles").hidden =
+                materia !== "ingles";
 
             // Trabajos de Humanidades
             document.getElementById("trabajoDebate").hidden =
